@@ -1,0 +1,16 @@
+body { margin: 0; padding: 0; background: #f6f6f6; font-family: 'Open Sans';
+}
+#container1 { margin: 16px; color: #424242; }
+* { font-size: 13px; max-width: 100%; }
+h1 { font-size: 36px; color: #222; text-transform: uppercase; }
+h2 { font-size: 22px; color: #363636; }
+h3 { font-size: 16px; color: #424242; font-style: italic; }
+a { color: #2288dd; text-decoration: none; }
+a:hover { color: #0268af; }
+input { width: 360px; font-size: 14px; border: 1px solid #888; padding: 4px 8px; background: #fff; border-radius: 8px;
+	transition: background .2s ease;
+	-moz-box-sizing: border-box;
+	}
+input:hover { border: 1px solid #aaa; }
+input:focus { color: #fff; background: #2288dd; border-color: transparent; }
+.btn { background: linear-gradient(#2288dd, #42a8ff); display: block; border: 0; padding: 32px; color: #fff; }

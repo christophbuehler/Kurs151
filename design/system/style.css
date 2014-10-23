@@ -1,0 +1,9 @@
+body, html { height: 100%; }
+body { margin: 0; padding: 0; font-family: 'Open Sans'; }
+header { background: #eee; height: 77px; border-bottom: 1px solid #bdbdbd; }
+#projInfo { float: left; }
+h1 { color: #222; font-weight: normal; padding: 16px; margin: 0; }
+#userInfo { float: right; padding: 16px; margin: 0; }
+#container1 { white-space: nowrap; min-height: 100%; }
+#container2 { position: absolute; display: inline-block; min-height: 100%; width: 240px; background: #222; }
+#container3 { position: absolute; display: inline-block; min-height: 100%; }

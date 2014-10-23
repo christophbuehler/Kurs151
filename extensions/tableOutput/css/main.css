@@ -1,0 +1,19 @@
+table.table_output { border: 1px solid #69c; border-collapse: collapse; font-family: "Lucida Sans Unicode","Lucida Grande",Sans-Serif; font-size: 12px;
+    margin: 20px 0; text-align: left; width: 480px; display: inline-table; }
+table.table_output input { padding: 4px; color: #383838; font-size: 12px; }
+th { color: #039;font-size: 14px;font-weight: normal;padding: 12px 17px;white-space: nowrap; }
+td { color: #669; padding: 7px 17px; }
+tr:hover td { background: none repeat scroll 0 0 #f2f2f2; color: #339; }
+th.f, tr td.f, .new { background: #d2dfdf; cursor: pointer;
+    -moz-transition: background-color .2s ease-in;
+    -webkit-transition: background-color .2s ease-in;
+    transition: background-color .2s ease-in; }
+td.f:hover, th.f:hover { background: #ade2a8; }
+.tbl_filter_row td { background: #d0d0d0 !important; border-bottom: 1px dashed #69c }
+.createNew { cursor: pointer; }
+.table-output-bounding-box { position: relative; }
+.table-output-error-message, .table-output-success-message { line-height: 180px; font-size: 28px; color: #fff; text-align: center; display: none; position: absolute; left: 0; top: 0; width: 100%; height: 100%; }
+.table-output-success-message { background: #27ae60; }
+.table-output-error-message { background: #e74c3c; }
+tr td.f div { display:none; }
+tr:hover td > div { display:inline; }

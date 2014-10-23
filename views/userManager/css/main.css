@@ -1,0 +1,19 @@
+#allgemein, #instrumente, #eltern {
+    display: none;
+}
+
+#allgemein:target, #instrumente:target, #eltern:target {
+    display: block;
+}
+
+tr.selected {
+    background: #E9E9E9;
+}
+
+.userMenu {
+    visibility: hidden;
+}
+
+.userMenuVisible {
+    visibility: visible;
+}
