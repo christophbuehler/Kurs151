@@ -33,7 +33,6 @@ Designer.prototype = {
     },
     insertBlock : function(el) {
         var e = $(this.copyBlockEl).clone();
-
         $(e).css({ 'left' : adjustGridSize($(el).parent().offset().left) + 'px', 'top' : adjustGridSize($(el).parent().offset().top) + 'px' });
         $('#pageContainer').append(e);
         hideContextMenu();
@@ -43,13 +42,9 @@ Designer.prototype = {
         hideContextMenu();
     },
     newBlock : function(el) {
-        var block = Util.createNewBlock('+', 'name', ':bool', '', 'Peter')
-        /* var e = $("<div></div>");
-        $(e).attr('class','block');*/
-
-        
+        var block = Util.createNewBlock('+', 'name', ':bool', '', 'Peter');
         $(block).css({ 'left' : Util.adjustGridSize($(el).parent().offset().left) + 'px', 'top' : Util.adjustGridSize($(el).parent().offset().top) + 'px' });
-        $('#pageContainer').append(block);
+        $('#pageContainer').append($(block));
         this.hideContextMenu();
     },
     showGrid : function() {

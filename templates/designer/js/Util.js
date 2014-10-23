@@ -26,9 +26,9 @@ var Util = {
         return ~~((value + this.gridSize / 2) / this.gridSize) * this.gridSize;
     },
     createNewBlock : function(vis, name, type, mul, beg) {
-        var block = document.createElement('div');
+        var block = $('<div></div>');
         $(block).attr('class', 'block');
-        $(block).html('<div class="className">Users</div>\
+        $(block).html('<div class="innerBlock"><div class="className">Users</div>\
             <ul class="attributes">\
             <li>\
                 <div class="attrVis">' + vis + '</div>\
@@ -37,6 +37,7 @@ var Util = {
                 <div class="attrMul">' + mul + '</div>\
                 <div class="attrBeg">' + beg + '</div>\
             </li>\
-        </ul>')
+        </ul></div>');
+        return block;
     }
 }
