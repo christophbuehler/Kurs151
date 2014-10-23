@@ -35,7 +35,7 @@ class IndexController extends Controller {
         $db = $this->model->db;
 
         // login query
-        $sth = $db->prepare("SELECT * FROM login WHERE
+        $sth = $db->prepare("SELECT * FROM user WHERE
             login = :login AND password = :password");
 
         $sth->execute(array(
@@ -52,8 +52,8 @@ class IndexController extends Controller {
 
         Session::set('loggedIn', true);
         Session::set('userId', $result['id']);
-        Session::set('userName', $result['login']);
-        Session::set('role', $result['rechte_gruppe_id']);
+        Session::set('login', $result['login']);
+        // Session::set('role', $result['rechte_gruppe_id']);
 
         return false;
     }

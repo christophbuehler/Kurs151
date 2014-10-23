@@ -1,0 +1,56 @@
+* { max-width: 100%; font-family: 'Tahoma';
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	-webkit-user-select: none;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+	-webkit-tap-highlight-color: transparent; }
+
+html { min-height: 100%; }
+body { margin: 0; padding: 0; height: 100%; width: 100%; position: absolute; }
+
+a  { text-decoration: none; }
+li { list-style: none; }
+
+#interface { border: 8px solid transparent; position: absolute; width: 100%; height: 100%; z-index: 100; left: 0; top: 0; display: none;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	box-sizing: border-box;
+	transition: background .4s ease, border .4s ease; }
+
+#interfaceNav { width: 280px; background: #fff; height: 100%; position: absolute; left: 0; top: 0; transform: translate3d(-100%, 0, 0);
+	transition: transform .2s ease-in; }
+#interfaceNav ul { padding: 0; margin: 180px 10px 0; }
+#interfaceNav a { display: block; cursor: pointer; text-align: center; color: #333; padding: 16px; margin: 4px 0 0 0;
+	transition: background .1s ease-in, color .1s ease-in; }
+#interfaceNav a:hover { background: #2288bb; color: #fff; }
+
+#contextMenu { position: absolute; display: none; background: #fff; width: 160px; border-radius: 4px; overflow: hidden; z-index: 5; font-size: 14px; border: 1px solid #ddd; }
+#contextMenu ul { padding: 0; margin: 0; }
+#contextMenu  a { display: block; cursor: pointer; height: 40px; line-height: 40px; padding-left: 8px; border-left: 4px solid transparent; color: #333; }
+#contextMenu  a:hover { border-left-color: #2288bb; background: #fff; color: #2288bb; }
+
+#close { margin-top: 32px !important; }
+#close:hover { background: #999 !important; }
+
+#configurationBox { position: absolute; right: 0; height: 100%; width: 260px; background: #f3f3f3; }
+#configurationBox section { height: 40px; overflow: hidden; margin: 10px 0 10px; }
+#configurationBox section > label { background: #333; display: block; width: 100%; height: 40px; line-height: 40px; color: #fff; text-align: center; }
+#configurationBox ul { padding: 0; margin: 0; }
+#configurationBox li { clear: both; margin: 0; padding: 0; border-bottom: 1px solid #425270; border-top: 1px solid #425270; height: 25px; list-style: none; background: #fff; }
+#configurationBox li label { width: 60px; }
+#configurationBox li div { width: 178px; }
+#configurationBox li label, #configurationBox li div { height: 25px; padding-left: 10px; border-left: 1px solid #425270; font-size: 13px; line-height: 25px; color: #333; float: left; }
+#configurationBox li div { text-align: center; }
+#configurationBox span { color: #fff; display: block; margin: 16px; font-size: 13px; }
+
+#viewSettings { background: #fff; border-top: 1px solid #999; height: auto; }
+#viewSettings span { color: #333; }
+
+.noStyle { background: none; border: none; }
+.input.noStyle { font-size: 12px; }
+.halfWidth { width: 78px; margin: 0 2px; padding: 2px; background-color: #bbb; }
+
+.numericInput { float: left; text-align: center; width: 60px; border: 0; height: 25px; padding: 0; }
+.numericMinus, .numericPlus { cursor: default; display: inline-block; background: #bbb; width: 25px !important; padding: 0 !important; border: 0 !important; height: 25px !important; }

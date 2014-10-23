@@ -1,0 +1,1 @@
+<?phpdefine('TITLE', 'Designer');define('TEMPLATE', 'designer');

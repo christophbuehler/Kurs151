@@ -1,0 +1,1 @@
+<?phpclass DesignerController extends Controller {    function init() {        // access only for logged in users        if (!Session::get('loggedIn')) {            header('location: ' . LOGIN_VIEW);            exit;        }        // assign page name        $this->smarty->assign('test', "das ist ein test...");    }}

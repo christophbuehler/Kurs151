@@ -17,8 +17,6 @@ class Bootstrap
         // model
         $this->model = new Model();
 
-	
-
         // url parts
         $url = isset($_GET['url']) ? $_GET['url'] : null;
 
@@ -125,6 +123,7 @@ class Bootstrap
         if (count($url) != 2) return false;
 
         $controllerName = ucfirst($url[0]) . 'Functions';
+
         require $pagePath .'/'. $controllerName . '.php';
 
         $extensionController = new $controllerName($this->smarty, $this->model, $url, $this->error);
