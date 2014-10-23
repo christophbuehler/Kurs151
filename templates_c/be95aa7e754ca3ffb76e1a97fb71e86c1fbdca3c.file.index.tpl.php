@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.18, created on 2014-10-23 14:42:11
+<?php /* Smarty version Smarty-3.1.18, created on 2014-10-23 16:24:53
          compiled from "views\designer\index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:178025448e0ea43ff75-00211379%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'be95aa7e754ca3ffb76e1a97fb71e86c1fbdca3c' => 
     array (
       0 => 'views\\designer\\index.tpl',
-      1 => 1414067929,
+      1 => 1414074291,
       2 => 'file',
     ),
   ),
@@ -39,7 +39,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
             <li><a id="copyBlock" href="$copyBlock">Copy Class</a></li>
             <li><a id="insertBlock" href="$insertBlock">Insert Class</a></li>
             <li><a href="#nav">Page Settings</a></li>
-            <li><a id="showGridBtn" href="#showGrid">Show Grid</a></li>
+            <li><a id="showGridBtn" href="$showGrid">Show Grid</a></li>
         </ul>
     </nav>
 </div>

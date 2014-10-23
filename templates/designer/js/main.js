@@ -8,7 +8,7 @@ $(function() {
     var designer = new Designer();
 
 	var isContextOnBlock = false,
-	    resizer = new Resizer('#resize', 15, '.block'),
+	    resizer = new Resizer('#resize', 4, '.block'),
 	    mover = new Mover('.block');
 
     Navigator.init();

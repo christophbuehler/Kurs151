@@ -11,7 +11,7 @@ var Resizer = function(domEl, thickness, objectQuery) {
 	this.target = null;
 	
 	$(domEl).css({
-		'background' : '#2288bb',
+		'background' : '#ddd',
 		'position' : 'absolute',
 		'width' : 0,
 		'height' : 0,
@@ -52,15 +52,15 @@ Resizer.prototype = {
 		this.alignment = [];
 		
 		this.styles = {
-			"width" : $(this.target).width() - this.thickness * 2,
-			"height" : $(this.target).height() - this.thickness * 2,
+			"width" : $(this.target).outerWidth() - this.thickness * 2,
+			"height" : $(this.target).outerHeight() - this.thickness * 2,
 			"left" : $(this.target).offset().left + this.thickness,
 			"top" : $(this.target).offset().top + this.thickness
 		};
 		
-		if ($(this.target).height() - y <= this.thickness) {
+		if ($(this.target).outerHeight() - y <= this.thickness) {
 			this.styles.height = this.thickness;
-			this.styles.top = $(this.target).offset().top + $(this.target).height() - this.thickness;
+			this.styles.top = $(this.target).offset().top + $(this.target).outerHeight() - this.thickness;
 			show = true;
 			this.alignment.push('bottom');
 		} else if (y <= this.thickness) {
@@ -70,9 +70,9 @@ Resizer.prototype = {
 			this.alignment.push('top');
 		}
 		
-		if ($(this.target).width() - x <= this.thickness) {
+		if ($(this.target).outerWidth() - x <= this.thickness) {
 			this.styles.width = this.thickness;
-			this.styles.left = $(this.target).offset().left + $(this.target).width() - this.thickness;
+			this.styles.left = $(this.target).offset().left + $(this.target).outerWidth() - this.thickness;
 			show = true;
 			this.alignment.push('right');
 		} else if (x <= this.thickness) {
@@ -100,7 +100,6 @@ Resizer.prototype = {
 	},
 	hide : function() {
 		var _this = this;
-
 		$(_this.domEl).css('display', 'none');
 	},
 	disable : function() {
@@ -118,8 +117,8 @@ Resizer.prototype = {
 		this.alignment.map(function(el) {
 			switch (el) {
 				case 'top':
-					if ( $(_this.target).offset().top + $(_this.target).height() - Util.adjustGridSize(y) >= _this.thickness * 3)
-						$(_this.target).css('height', $(_this.target).offset().top + $(_this.target).height() - Util.adjustGridSize(y));
+					if ( $(_this.target).offset().top + $(_this.target).outerHeight() - Util.adjustGridSize(y) >= _this.thickness * 3)
+						$(_this.target).css('height', $(_this.target).offset().top + $(_this.target).outerHeight() - Util.adjustGridSize(y));
 					$(_this.target).css('top', Util.adjustGridSize(y));
 					break;
 				case 'bottom':
@@ -127,8 +126,8 @@ Resizer.prototype = {
 						$(_this.target).css('height', Util.adjustGridSize(y - $(_this.target).offset().top));
 					break;
 				case 'left':
-					if ($(_this.target).offset().left + $(_this.target).width() - Util.adjustGridSize(x) >= _this.thickness * 3)
-						$(_this.target).css('width', $(_this.target).offset().left + $(_this.target).width() - Util.adjustGridSize(x));
+					if ($(_this.target).offset().left + $(_this.target).outerWidth() - Util.adjustGridSize(x) >= _this.thickness * 3)
+						$(_this.target).css('width', $(_this.target).offset().left + $(_this.target).outerWidth() - Util.adjustGridSize(x));
 					$(_this.target).css('left', Util.adjustGridSize(x));
 					break;
 				case 'right':

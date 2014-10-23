@@ -18,7 +18,7 @@
             <li><a id="copyBlock" href="$copyBlock">Copy Class</a></li>
             <li><a id="insertBlock" href="$insertBlock">Insert Class</a></li>
             <li><a href="#nav">Page Settings</a></li>
-            <li><a id="showGridBtn" href="#showGrid">Show Grid</a></li>
+            <li><a id="showGridBtn" href="$showGrid">Show Grid</a></li>
         </ul>
     </nav>
 </div>
