@@ -136,15 +136,71 @@ Resizer.prototype = {
 };*/
 
 var Resizer = function(objectQuery) {
-    var _this = this;
+    var _this = this, hover = false, resizing = false, direction = "",
+        initVals = { ob : { width : 0, height : 0, x : 0, y : 0 }, mouse : { x : 0, y : 0 } };
     this.objectQuery = objectQuery;
-    this.domEl = $('<div id="resizer"><div class="left"></div><div class="top"></div><div class="right"></div><div class="bottom"></div></div>');
+    this.domEl = $('<div id="resizer"><div class="b bLT"></div><div class="b bLB"></div><div class="b bRT"></div><div class="b bRB"></div><div class="left"></div><div class="top"></div><div class="right"></div><div class="bottom"></div></div>');
+
+    this.resizeEl = null;
 
     $('body').append(this.domEl);
+
+    $('body').on('mouseup', function() {
+        resizing = false;
+    });
+
+    $('body').on('mouseout', '.block', function() {
+        hover = false;
+    });
 
     $('body').on('mouseover', '.block', function() {
         _this.setStyles(this);
         _this.show();
+        _this.resizeEl = this;
+        hover = true;
+    });
+
+    $('body').on('mousemove', function(evt) {
+        if (!resizing) return;
+
+        var offsets = {
+            x : evt.pageX - initVals.mouse.x,
+            y : evt.pageY - initVals.mouse.y }
+
+        console.log(offsets);
+
+        console.log(initVals.ob.width);
+
+        switch (direction) {
+            case 'bRB':
+                $(_this.resizeEl).css({ 'width' : initVals.ob.width + offsets.x + "px",
+                    'height' : initVals.ob.height + offsets.y + "px" });
+                break;
+            case 'bRT':
+
+                break;
+            case 'bLB':
+
+                break;
+            case 'bLT':
+
+        }
+
+        // _this.resizeEl.css({  })
+    });
+
+    $('body').on('mousedown', '.b', function(evt) {
+        resizing = true;
+        direction = $(this).attr('class').split(' ')[1];
+        initVals = {
+            ob : {
+                width : $(_this.resizeEl).width(),
+                height : $(_this.resizeEl).height(),
+                x : $(_this.resizeEl).offset().left,
+                y : $(_this.resizeEl).offset().top
+            },
+            mouse : { x : evt.pageX, y : evt.pageY }
+        };
     });
 };
 
@@ -156,11 +212,19 @@ Resizer.prototype = {
         $(this.objectQuery + " div").css('display', 'none');
     },
     setStyles : function(el) {
-        $(this.domEl).find(".left, .right").css('height', $(el).height() + 'px');
-        $(this.domEl).find(".top, .bottom").css('width', $(el).width() + 'px');
-        $(this.domEl).find(".left, .top, .bottom").css('left', $(el).offset().left + "px");
-        $(this.domEl).find(".left, .top, .right").css('top', $(el).offset().top + "px");
-        $(this.domEl).find(".bottom").css('top', ($(el).offset().top + $(el).height()) + "px");
-        $(this.domEl).find(".right").css('left', ($(el).offset().left + $(el).width()) + "px");
+        $(this.domEl).find(".left, .right").css('height', $(el).height() + 12 + 'px');
+        $(this.domEl).find(".top, .bottom").css('width', $(el).width() + 12 + 'px');
+
+        $(this.domEl).find(".left, .top, .bottom").css('left', $(el).offset().left - 9 + "px");
+        $(this.domEl).find(".right").css('left', ($(el).offset().left + $(el).width()) + 1 + "px");
+
+        $(this.domEl).find(".left, .top, .right").css('top', $(el).offset().top - 9 + "px");
+        $(this.domEl).find(".bottom").css('top', ($(el).offset().top + $(el).height()) + 1 + "px");
+
+        $(this.domEl).find(".bLT, .bLB").css('left', $(el).offset().left - 13 + "px");
+        $(this.domEl).find(".bRT, .bRB").css('left', $(el).offset().left + $(el).width() - 3 + "px");
+
+        $(this.domEl).find(".bLT, .bRT").css('top', $(el).offset().top - 13 + "px");
+        $(this.domEl).find(".bLB, .bRB").css('top', $(el).offset().top + $(el).height() - 3 + "px");
     }
 };

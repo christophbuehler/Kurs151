@@ -3,7 +3,7 @@
 	background-color: #fff;
 	background-position: -1px -1px, -1px -1px, 0px 0px, 0px 0px; }
 
-#pageContainer .block { min-height: 120px; width: 150px; position: absolute; box-sizing: border-box; position: absolute; border: 1px solid #333; overflow: hidden; background: #fff; border-radius: 8px; }
+#pageContainer .block { box-sizing: border-box; min-height: 120px; width: 150px; position: absolute; box-sizing: border-box; position: absolute; border: 1px solid #333; overflow: hidden; background: #fff; border-radius: 8px; }
 .className { text-align: center; color: #fff; font-size: 12px; background: #555; line-height: 22px; border-bottom: 1px solid #333; }
 .block ul { margin: 0; padding: 0; }
 .block li { border-bottom: 1px dashed #555; overflow: hidden; text-overflow: ellipsis; padding: 4px; white-space: nowrap; }
