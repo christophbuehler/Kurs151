@@ -4,6 +4,7 @@ var Designer = function() {
     this.isContextOnBlock = false;
     this.configEl = null;
     this.copyBlockEl = null;
+    this.currentDocument = null;
 };
 
 Designer.prototype = {
@@ -55,5 +56,23 @@ Designer.prototype = {
         }
         $('#showGridBtn').html('Show Grid');
         $('#pageContainer').css('backgroundImage', 'none');
+    },
+    save : function() {
+
+
+        this.currentDocument.html = $('#pageContainer').html();
+        $.post('designer/update_diagram', this.currentDocument,
+            function(data) {
+                data = JSON.parse(data);
+
+                // error
+                if (data.code == 1) {
+                    alert("Error saving data :(");
+                    return;
+                }
+
+                alert("Data saved successfully :)");
+            }
+        );
     }
 };

@@ -1,7 +1,19 @@
+<div id="openDialogueBox">
+    <div id="openDialogue">
+        <span>Recent documents:</span>
+        <div id="recentClassDiagrams"></div>
+        <form id="newDiagramForm">
+            <div class="success" id="createDiagramSuccess"></div>
+            <div class="error" id="createDiagramError"></div>
+            <input name="diagramName" type="text" id="diagramName" class="input" placeholder="name">
+        </form>
+        <button id="newDiagram" class="btn">create new class diagram</button>
+    </div>
+</div>
 <div id="interface">
     <nav id="interfaceNav">
         <ul>
-            <li><a href="#save">Save</a></li>
+            <li><a href="$save">Save</a></li>
             <li><a href="#restore">Restore</a></li>
             <li><a href="#settings">Settings</a></li>
             <li><a href="logout">Logout</a></li>
@@ -22,65 +34,10 @@
         </ul>
     </nav>
 </div>
-<div id="resize"></div>
 <div id="configurationBox">
-    <span>Selected Element</span>
-    <section>
-        <label>Background</label>
-        <ul>
-            <li>
-                <label>Color</label>
-                <div>
-                    <input id="backgroundColor" class="noStyle" type="color">
-                </div>
-            </li>
-            <li>
-                <label>Image</label>
-                <div>
-                    <input id="backgroundImage" class="input noStyle" type="file">
-                </div>
-            </li>
-            <li>
-                <label>Size</label>
-                <div>
-                    <input id="backgroundSizeX" class="halfWidth input noStyle" type="text" value="-">
-                    <input id="backgroundSizeY" class="halfWidth input noStyle" type="text" value="-">
-                </div>
-            </li>
-            <li>
-                <label>Position</label>
-                <div>
-                    <input id="backgroundPositionX" class="halfWidth input noStyle" type="text" value="-">
-                    <input id="backgroundPositionY" class="halfWidth input noStyle" type="text" value="-">
-                </div>
-            </li>
-            <li>
-                <label>Repeat</label>
-                <div>
-                    <select id="backgroundRepeat" class="input noStyle">
-                        <option>repeat</option>
-                        <option>no-repeat</option>
-                        <option>repeat-x</option>
-                        <option>repeat-y</option>
-                    </select>
-                </div>
-            </li>
-        </ul>
-    </section>
-    <section>
-        <label>Text</label>
-        <ul>
-        </ul>
-    </section>
-    <div id="viewSettings">
-        <span>View</span>
-        <ul>
-            <li>
-                <label>Grid Size</label>
-                <div>
-                    <input type="text" value="60" id="gridSize" class="numericInput">
-                </div>
-            </li>
-        </ul>
+    <label>Grid Size</label>
+    <div>
+        <input type="text" value="60" id="gridSize" class="numericInput">
+        <button class="btn">new connection</button>
     </div>
 </div>

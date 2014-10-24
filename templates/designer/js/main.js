@@ -2,13 +2,13 @@
 	jGrid v. 1.0
 *****************************************/
 
-var copyBlockEl = null;
+var copyBlockEl = null, designer = null;
 
 $(function() {
-    var designer = new Designer();
+    designer = new Designer();
 
 	var isContextOnBlock = false,
-	    resizer = new Resizer('#resize', 4, '.block'),
+	    resizer = new Resizer('.block'),
 	    mover = new Mover('.block');
 
     Navigator.init();
@@ -105,7 +105,28 @@ $(function() {
 		Util.gridSize = $(this).next().val();
 
 		$('#pageContainer').css('backgroundImage', 'none');
-		showGrid();
+		designer.showGrid();
 	});
-	
+
+    $('body').on('click', '.addNewAttribute', function() {
+        $(this).parent().find('ul').append(Util.instantiateAttribute('+', 'nameless', 'int', '', 'a'))
+    });
+
+    $('body').on('click', '.attrName', function(evt) {
+        if ($(this).attr('data-is-edit') == 'true') return;
+
+        $(this).attr('data-is-edit', 'true');
+        $(this).html(Util.instantiateMagicInputField($(this).html(), 40));
+
+        evt.preventDefault();
+        evt.stopPropagation();
+    });
+
+    $('body').on('click', '.magicInputOk', function(evt) {
+        $(this).parent().attr('data-is-edit', 'false');
+        $(this).parent().html($(this).prev().val());
+
+        evt.preventDefault();
+        evt.stopPropagation();
+    });
 });

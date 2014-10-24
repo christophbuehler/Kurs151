@@ -19,7 +19,7 @@ var Util = {
 
                 $('#base').text( e.target.result );
             };
-            fr.readAsDataURL( input.files[0] );
+            fr.readAsDataURL(input.files[0]);
         }
     },
     adjustGridSize : function(value) {
@@ -28,16 +28,21 @@ var Util = {
     createNewBlock : function(vis, name, type, mul, beg) {
         var block = $('<div></div>');
         $(block).attr('class', 'block');
-        $(block).html('<div class="innerBlock"><div class="className">Users</div>\
-            <ul class="attributes">\
-            <li>\
-                <div class="attrVis">' + vis + '</div>\
-                <div class="attrName">' + name + '</div>\
-                <div class="attrType">' + type + '</div>\
-                <div class="attrMul">' + mul + '</div>\
-                <div class="attrBeg">' + beg + '</div>\
-            </li>\
-        </ul></div>');
+        $(block).html('<div class="className">Users</div>\
+            <ul class="attributes">' + this.instantiateAttribute(vis, name, type, mul, beg) + '\
+            </ul><div class="addNewAttribute">+</div>');
         return block;
+    },
+    instantiateAttribute : function(vis, name, type, mul, beg) {
+        return '<li>\
+            <div class="attrVis">' + vis + '</div>\
+            <div class="attrName">' + name + '</div>\
+            <div class="attrType">' + type + '</div>\
+            <div class="attrMul">' + mul + '</div>\
+            <div class="attrBeg">' + beg + '</div>\
+        </li>'
+    },
+    instantiateMagicInputField : function(text, width) {
+        return $('<input type="text" style="width: ' + width + 'px" value="' + text + '" class="magicInput"><button class="magicInputOk">ok</button>');
     }
 }

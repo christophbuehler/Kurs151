@@ -1,29 +1,23 @@
-var Resizer = function(domEl, thickness, objectQuery) {
+/*var Resizer = function(objectQuery) {
 	var _this = this;
 	
-	this.domEl = domEl;
+	this.domEl = $('<div id="resizer"><div class="left"></div><div class="top"></div><div class="right"></div><div class="bottom"></div></div>');
 	this.listen = false;
-	this.thickness = thickness;
 	this.disabled = false;
 	this.styles = [];
 	this.alignment = [];
 	this.resizing = false;
 	this.target = null;
-	
-	$(domEl).css({
-		'background' : '#ddd',
-		'position' : 'absolute',
-		'width' : 0,
-		'height' : 0,
-		'display' : 'none'
-	});
+
+    $('body').append(this.domEl);
 	
 	$('body').on('mousemove', objectQuery, function(evt) {
-		if (!_this.resizing) _this.setTarget(this);
+        $(this.domEl + " div").css({ 'display' : 'block' });
+        // if (!_this.resizing) _this.setTarget(this);
 		_this.setStyles(evt);
 	});
 	
-	$('body').on('mousedown', domEl, function() {
+	$('body').on('mousedown', this.domEl, function() {
 		_this.resizing = true;
 	});
 	
@@ -50,7 +44,10 @@ Resizer.prototype = {
 		if (this.resizing) return;
 
 		this.alignment = [];
-		
+
+        $(this.domEl).find('.top, .bottom').css({ 'width' : ($(this.target).outerWidth() - this.thickness * 2) + 'px' });
+        $(this.domEl).find('.left, .right').css({ 'height' : ($(this.target).outerHeight() - this.thickness * 2) + 'px' });
+
 		this.styles = {
 			"width" : $(this.target).outerWidth() - this.thickness * 2,
 			"height" : $(this.target).outerHeight() - this.thickness * 2,
@@ -136,4 +133,34 @@ Resizer.prototype = {
 			}
 		});
 	}
+};*/
+
+var Resizer = function(objectQuery) {
+    var _this = this;
+    this.objectQuery = objectQuery;
+    this.domEl = $('<div id="resizer"><div class="left"></div><div class="top"></div><div class="right"></div><div class="bottom"></div></div>');
+
+    $('body').append(this.domEl);
+
+    $('body').on('mouseover', '.block', function() {
+        _this.setStyles(this);
+        _this.show();
+    });
+};
+
+Resizer.prototype = {
+    show : function() {
+        $(this.objectQuery + " div").css('display', 'block');
+    },
+    hide : function() {
+        $(this.objectQuery + " div").css('display', 'none');
+    },
+    setStyles : function(el) {
+        $(this.domEl).find(".left, .right").css('height', $(el).height() + 'px');
+        $(this.domEl).find(".top, .bottom").css('width', $(el).width() + 'px');
+        $(this.domEl).find(".left, .top, .bottom").css('left', $(el).offset().left + "px");
+        $(this.domEl).find(".left, .top, .right").css('top', $(el).offset().top + "px");
+        $(this.domEl).find(".bottom").css('top', ($(el).offset().top + $(el).height()) + "px");
+        $(this.domEl).find(".right").css('left', ($(el).offset().left + $(el).width()) + "px");
+    }
 };

@@ -11,10 +11,6 @@ class IndexController extends Controller {
         return Session::get('loggedIn');
     }
 
-    function blog() {
-        return "Dies ist ein Ajax Aufruf.";
-    }
-
     function check_login() {
         // ensure user is logged out
         if (Session::get('loggedIn')) {
@@ -22,40 +18,50 @@ class IndexController extends Controller {
         }
 
         // required fields
-        if (!isset($_POST['start-name'])) return 1;
-        if (!isset($_POST['start-pass'])) return 2;
+        if (!isset($_POST['login-name'])) return array(
+            'code' => 1,
+            'msg' => "Please enter a username."
+        );
 
-        $login = $_POST['start-name'];
-        $pass = $_POST['start-pass'];
+        if (!isset($_POST['login-pass'])) return array(
+            'code' => 1,
+            'msg' => "Please enter a password."
+        );
 
-        // password too short
-        if (strlen($login) < 5) return 3;
+        $login = $_POST['login-name'];
+        $pass = $_POST['login-pass'];
 
         // database
         $db = $this->model->db;
 
-        // start query
+        // login query
         $sth = $db->prepare("SELECT * FROM user WHERE
-            start = :start AND password = :password");
+            login = :login AND password = :password");
 
         $sth->execute(array(
-            ':start' => $login,
+            ':login' => $login,
             ':password' => $pass
         ));
 
         $count = $sth->rowCount();
 
-        // bad start
-        if ($count == 0) return 4;
+        // bad login
+        if ($count == 0) return array(
+            'code' => -1,
+            'msg' => "Bad login."
+        );
 
         $result = $sth->fetchAll()[0];
 
         Session::set('loggedIn', true);
         Session::set('userId', $result['id']);
-        Session::set('start', $result['start']);
+        Session::set('login', $result['login']);
         // Session::set('role', $result['rechte_gruppe_id']);
 
-        return false;
+        return array(
+            'code' => 0,
+            'msg' => "Login successful."
+        );
     }
 
     function logout() {

@@ -86,7 +86,7 @@ class Bootstrap
         $pagePath = 'views/' . $url[0];
 
         if (method_exists($this->indexController, $url[0])) {
-            echo $this->indexController->{$url[0]}();
+            echo json_encode($this->indexController->{$url[0]}());
             return true;
         }
 
@@ -102,9 +102,10 @@ class Bootstrap
                 $contentController = new $controllerName($this->smarty, $this->model, $url, $this->error);
                 if (method_exists($contentController, $url[$i])) {
                     $params = explode(',', (isset($_GET['p']) ? $_GET['p'] : ''));
-    
+
                     // echo call_user_func_array($contentController->{$url[$i]}, $params);
-		    echo call_user_func_array(array($contentController, $url[$i]), $params);
+                    // echo call_user_func_array(array($contentController, $url[$i]), $params);
+                    echo json_encode(call_user_func_array(array($contentController, $url[$i]), $params));
 
                     // echo $contentController->{$url[$i]}();
                     return true;
@@ -148,6 +149,8 @@ class Bootstrap
         }
 
         if (!file_exists($pagePath . '/index.tpl')) return false;
+
+        $this->smarty->assign('pageName', $url[count($url) - 1]);
 
         $controllerName = ucfirst($url[count($url) - 1]) . 'Controller';
 
