@@ -49,7 +49,7 @@ Designer.prototype = {
     },
     showGrid : function() {
         if ($('#pageContainer').css('backgroundImage') == 'none') {
-            $('#pageContainer').css({ 'backgroundImage' : 'linear-gradient(#ddd 1px, transparent 1px), linear-gradient(90deg, #ddd 1px, transparent 1px)', 'backgroundSize' : Util.gridSize + 'px ' + gridSize + 'px, ' + gridSize + 'px ' + gridSize + 'px' });
+            $('#pageContainer').css({ 'backgroundImage' : 'linear-gradient(#ddd 1px, transparent 1px), linear-gradient(90deg, #ddd 1px, transparent 1px)', 'backgroundSize' : Util.gridSize + 'px ' + Util.gridSize + 'px, ' + Util.gridSize + 'px ' + Util.gridSize + 'px' });
             $('#showGridBtn').html('Hide Grid');
             return;
         }

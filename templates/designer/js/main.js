@@ -96,7 +96,7 @@ $(function() {
 		Util.gridSize = $(this).prev().val();
 
 		$('#pageContainer').css('backgroundImage', 'none');
-		showGrid();
+		designer.showGrid();
 	});
 	
 	$('body').on('click', '.numericMinus', function() {

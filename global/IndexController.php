@@ -22,11 +22,11 @@ class IndexController extends Controller {
         }
 
         // required fields
-        if (!isset($_POST['login-name'])) return 1;
-        if (!isset($_POST['login-pass'])) return 2;
+        if (!isset($_POST['start-name'])) return 1;
+        if (!isset($_POST['start-pass'])) return 2;
 
-        $login = $_POST['login-name'];
-        $pass = $_POST['login-pass'];
+        $login = $_POST['start-name'];
+        $pass = $_POST['start-pass'];
 
         // password too short
         if (strlen($login) < 5) return 3;
@@ -34,25 +34,25 @@ class IndexController extends Controller {
         // database
         $db = $this->model->db;
 
-        // login query
+        // start query
         $sth = $db->prepare("SELECT * FROM user WHERE
-            login = :login AND password = :password");
+            start = :start AND password = :password");
 
         $sth->execute(array(
-            ':login' => $login,
+            ':start' => $login,
             ':password' => $pass
         ));
 
         $count = $sth->rowCount();
 
-        // bad login
+        // bad start
         if ($count == 0) return 4;
 
         $result = $sth->fetchAll()[0];
 
         Session::set('loggedIn', true);
         Session::set('userId', $result['id']);
-        Session::set('login', $result['login']);
+        Session::set('start', $result['start']);
         // Session::set('role', $result['rechte_gruppe_id']);
 
         return false;
