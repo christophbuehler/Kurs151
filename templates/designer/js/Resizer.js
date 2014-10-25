@@ -139,7 +139,7 @@ var Resizer = function(objectQuery) {
     var _this = this, hover = false, resizing = false, direction = "",
         initVals = { ob : { width : 0, height : 0, x : 0, y : 0 }, mouse : { x : 0, y : 0 } };
     this.objectQuery = objectQuery;
-    this.domEl = $('<div id="resizer"><div class="b bLT"></div><div class="b bLB"></div><div class="b bRT"></div><div class="b bRB"></div><div class="left"></div><div class="top"></div><div class="right"></div><div class="bottom"></div></div>');
+    this.domEl = $('<div id="resizer"><div class="c cT"></div><div class="c cR"></div><div class="c cL"></div><div class="c cB"></div><div class="b bLT"></div><div class="b bLB"></div><div class="b bRT"></div><div class="b bRB"></div><div class="left"></div><div class="top"></div><div class="right"></div><div class="bottom"></div></div>');
 
     this.resizeEl = null;
 
@@ -154,6 +154,8 @@ var Resizer = function(objectQuery) {
     });
 
     $('body').on('mouseover', '.block', function() {
+		if (resizing) return;
+		
         _this.setStyles(this);
         _this.show();
         _this.resizeEl = this;
@@ -162,7 +164,9 @@ var Resizer = function(objectQuery) {
 
     $('body').on('mousemove', function(evt) {
         if (!resizing) return;
-
+		
+		 _this.setStyles(_this.resizeEl);
+		
         var offsets = {
             x : evt.pageX - initVals.mouse.x,
             y : evt.pageY - initVals.mouse.y }
@@ -174,16 +178,23 @@ var Resizer = function(objectQuery) {
         switch (direction) {
             case 'bRB':
                 $(_this.resizeEl).css({ 'width' : initVals.ob.width + offsets.x + "px",
-                    'height' : initVals.ob.height + offsets.y + "px" });
+										'height' : initVals.ob.height + offsets.y + "px" });
                 break;
             case 'bRT':
-
+                $(_this.resizeEl).css({ 'top' : initVals.ob.y + offsets.y + "px",
+										'width' : initVals.ob.width + offsets.x + "px",
+										'height' : initVals.ob.height - offsets.y + "px" });
                 break;
             case 'bLB':
-
+                $(_this.resizeEl).css({ 'left' : initVals.ob.x + offsets.x + "px",
+										'width' : initVals.ob.width - offsets.x + "px",
+										'height' : initVals.ob.height + offsets.y + "px" });
                 break;
             case 'bLT':
-
+                $(_this.resizeEl).css({ 'left' : initVals.ob.x + offsets.x + "px",
+										'top' : initVals.ob.y + offsets.y + "px",
+										'width' : initVals.ob.width - offsets.x + "px",
+										'height' : initVals.ob.height - offsets.y + "px" });
         }
 
         // _this.resizeEl.css({  })
@@ -212,6 +223,7 @@ Resizer.prototype = {
         $(this.objectQuery + " div").css('display', 'none');
     },
     setStyles : function(el) {
+		// lines
         $(this.domEl).find(".left, .right").css('height', $(el).height() + 12 + 'px');
         $(this.domEl).find(".top, .bottom").css('width', $(el).width() + 12 + 'px');
 
@@ -221,10 +233,20 @@ Resizer.prototype = {
         $(this.domEl).find(".left, .top, .right").css('top', $(el).offset().top - 9 + "px");
         $(this.domEl).find(".bottom").css('top', ($(el).offset().top + $(el).height()) + 1 + "px");
 
+		// circles
         $(this.domEl).find(".bLT, .bLB").css('left', $(el).offset().left - 13 + "px");
         $(this.domEl).find(".bRT, .bRB").css('left', $(el).offset().left + $(el).width() - 3 + "px");
 
         $(this.domEl).find(".bLT, .bRT").css('top', $(el).offset().top - 13 + "px");
         $(this.domEl).find(".bLB, .bRB").css('top', $(el).offset().top + $(el).height() - 3 + "px");
+		
+		// squares
+		$(this.domEl).find(".cT, .cB").css('left', $(el).offset().left + $(el).width() / 2 - 4 + "px");
+		$(this.domEl).find(".cL").css('left', $(el).offset().left - 19 + "px");
+		$(this.domEl).find(".cR").css('left', $(el).offset().left + $(el).width() + 13 + "px");
+		
+		$(this.domEl).find(".cT").css('top', $(el).offset().top - 19 + "px");
+		$(this.domEl).find(".cL, .cR").css('top', $(el).offset().top + $(el).height() / 2 - 4 + "px");
+		$(this.domEl).find(".cB").css('top', $(el).offset().top + $(el).height() + 13 + "px");
     }
 };

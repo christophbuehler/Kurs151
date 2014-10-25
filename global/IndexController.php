@@ -47,7 +47,7 @@ class IndexController extends Controller {
 
         // bad login
         if ($count == 0) return array(
-            'code' => -1,
+            'code' => 1,
             'msg' => "Bad login."
         );
 
